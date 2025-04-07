@@ -1,3 +1,52 @@
+# Cell Annotation using scGPT
+
+Hey! This repo contains my implementation of **cell annotation using scGPT** — a transformer-based model designed for working with single-cell RNA sequencing (scRNA-seq) data.
+
+I used the official [scGPT GitHub repo](https://github.com/bowang-lab/scGPT) and ran the code in the provided `.ipynb` notebook to explore how this model can help in predicting cell types based on gene expression data.
+
+This was mainly an exploration project for learning, and I’m sharing the code + results here in case anyone else is trying to run this and wants a headstart.
+
+---
+
+## Files in This Repo
+
+- `cell_annotation scgpt.ipynb` – Jupyter notebook where I ran the model and tested cell annotation on scRNA-seq data.
+- `README.md` – You're reading it :)
+
+---
+
+## About scGPT
+
+scGPT is like ChatGPT... but for cells. It’s a transformer-based model trained on single-cell data to understand gene patterns, batch effects, and even cell types. It's been trained using masked modeling (just like BERT), and fine-tuned to do tasks like:
+
+- Cell type annotation
+- Batch correction
+- Gene imputation
+- and more.
+
+In this notebook, I focused on the **cell annotation** part — basically predicting what type of cell it is, based on its gene expression.
+
+---
+
+## How I Ran the Notebook
+
+1. Cloned the original scGPT repo
+2. Installed the dependencies (not as easy as I thought — see challenges below)
+3. Downloaded preprocessed datasets and pretrained weights
+4. Loaded the dataset using `scanpy`
+5. Ran the model for cell type prediction
+6. Visualized the UMAPs and confusion matrix to evaluate performance
+
+---
+
+## What Worked
+
+- The pretrained model could predict cell types fairly accurately after loading the right dataset
+- UMAP visualization showed clustering of cells by predicted labels
+- The notebook helped me understand the structure of the model and where each part fits in
+
+---
+
 ## Challenges I Faced
 
 While running and testing the scGPT model from the given notebook, I faced quite a few issues, especially in terms of environment setup and actually getting the model to work properly. I didn’t build the model from scratch, but even running it had it’s own set of challenges . Here’s everything I faced:
