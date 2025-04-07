@@ -57,7 +57,7 @@ While running and testing the scGPT model from the given notebook, I faced quite
 
 - The biggest problem was setting up the environment. So many libraries were outdated and not working properly with latest versions.
 - `torchtext` was giving errors because it didn’t go well with the newer PyTorch. I had to find a specific old version of PyTorch that actually worked with it.
-- I started with Python 3.12, but that totally broke things. The model and some packages just refused to work. Had to go back to Python 3.10 to fix it.
+- I started with Python 3.12, but that totally broke things. The model and some packages just refused to work. Had to go back to Python 3.11 to fix it.
 - Many modules like `transformers`, `anndata`, `scanpy` needed very specific versions. I had to match them manually or it would just crash.
 - Few modules weren’t even pre-installed. I had to search and install `wandb`, `datasets`, and `pytorch_lightning` separately.
 
