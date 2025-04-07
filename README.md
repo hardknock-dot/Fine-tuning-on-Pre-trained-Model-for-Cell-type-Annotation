@@ -1,41 +1,55 @@
-# Cell Annotation using scGPT
-This repository contains a Jupyter notebook I created to experiment with **scGPT** — a transformer-based model — for annotating cell types in single-cell RNA-seq data.
+## ❗ Challenges I Faced
 
-The notebook is called **`cell_annotation scgpt.ipynb`**, and in it, I try to apply the scGPT model to predict cell types from gene expression data. I’ve been curious about how transformer models can be applied to biological data, and this was a fun project to dive into that!
+While running and testing the scGPT model from the given notebook, I faced quite a few issues, especially in terms of environment setup and actually getting the model to work properly. I didn’t build the model from scratch, but even running it had it’s own set of challenges 😅. Here’s everything I faced:
 
-## What I Did in This Notebook.
-### Here’s a quick breakdown of what I worked on:
-  - Loaded and preprocessed a single-cell RNA-seq dataset
-  - Used the scGPT model (either pretrained or fine-tuned) to make predictions on cell types
-  - Visualized the results using dimensionality reduction techniques like UMAP
-  - Compared the model predictions with actual labels (where available)
-### This notebook is basically me exploring how scGPT performs on this kind of task — and learning as I go.
-## Libraries I used
-To run the notebook, you’ll need a few Python libraries:
-- `torch`  
-- `scanpy`  
-- `anndata`  
-- `scikit-learn`  
-- `matplotlib`, `seaborn`  
-- `scgpt` from the official [GitHub repo](https://github.com/bowang-lab/scGPT)
-## What You'll See
-If everything runs smoothly, you’ll see:
-- Model outputs (i.e., predicted cell types)
-- UMAP plots showing the cell embeddings and clusters
-- Comparisons between predictions and actual cell types
-## Challenges I Faced
-Working with scGPT was super interesting, but not totally smooth. A few things I struggled with:
-- **Module installation was tough**: Downloading and installing all the required modules took way more time than expected.
-- **`torchtext` issues**: This library wasn’t compatible with my installed version of PyTorch, so I had to figure out the exact version of PyTorch it supports and install that manually.
-- **Outdated dependencies**: Most of the required modules were older versions, and trying to match the correct versions without breaking anything else was a major headache.
-- **Version mismatches everywhere**: I had to personally align versions of multiple libraries to get things working without conflict.
-- **Python version compatibility**: The entire scGPT module doesn't work properly with Python 3.12 and above, so I had to set up a separate environment with an older Python version (e.g., 3.10) just to run the notebook.
-- **GPU memory limitations**: Depending on the batch size and model config, I had to be careful not to overload the GPU.
-- **Understanding the model's outputs**: While the predictions worked, it wasn’t always easy to interpret what the model was doing internally.
+---
 
-Despite all that, once I got it running, the rest of the process was really rewarding. It taught me a lot about managing dependencies and debugging deep learning environments.
+### ⚙️ 1. Environment & Setup Issues
 
-## 📖 References
+- The biggest problem was setting up the environment. So many libraries were outdated and not working properly with latest versions.
+- `torchtext` was giving errors because it didn’t go well with the newer PyTorch. I had to find a specific old version of PyTorch that actually worked with it.
+- I started with Python 3.12, but that totally broke things. The model and some packages just refused to work. Had to go back to Python 3.10 to fix it.
+- Many modules like `transformers`, `anndata`, `scanpy` needed very specific versions. I had to match them manually or it would just crash.
+- Few modules weren’t even pre-installed. I had to search and install `wandb`, `datasets`, and `pytorch_lightning` separately.
 
-- [scGPT GitHub Repository](https://github.com/bowang-lab/scGPT)  
+---
 
+### 📊 2. Data Handling & Preprocessing
+
+- The data was in gene expression format — huge and super sparse. Took me some time to figure out how it's being processed.
+- I didn’t write the preprocessing code, but understanding the steps like normalization (`log1p`) and filtering was not straight forward at first.
+- Making sure my data format matches what the model expects was a little trial-and-error based.
+
+---
+
+### 🧠 3. Model Execution Challenges
+
+- The model uses a lot of memory. My GPU kept running out of space, so I had to reduce batch size or try smaller datasets.
+- Even though I wasn’t training from scratch, the execution was pretty slow, especially on CPU.
+- When I tried finetuning, it got unstable sometimes — like loss wasn’t decreasing properly, or results looked random.
+
+---
+
+### ⚖️ 4. Evaluation Difficulties
+
+- The notebook used some metrics like F1-score and confusion matrix. Took me some time to understand what they actually mean for cell types.
+- It was hard to tell if the model was really wrong or just confusing between similar cell types like different T-cells.
+
+---
+
+### 🚀 5. Generalization & Domain Shift
+
+- When I tried using a slightly different dataset, it didn’t work directly. I had to change token mapping and fix some size mismatch errors.
+- The pretrained model didn’t generalize well on new data — I guess because the dataset distribution was different.
+
+---
+
+### 📦 6. Reproducibility & Maintenance
+
+- Getting the whole thing to run required very specific setup. A small mismatch in version could break it all.
+- I realised that I should’ve used a virtual env or Docker early on — that would’ve saved me so much time.
+- Honestly, it made me realize how important clean documentation and proper requirements files are 😅
+
+---
+
+Even though I didn’t make the model, running it helped me learn a lot about handling big models, debugging environments, and figuring out how transformer-based models like scGPT are used in bio-related tasks. It wasn’t super easy but it was worth it!
