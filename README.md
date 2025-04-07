@@ -1,6 +1,6 @@
 ## Challenges I Faced
 
-While running and testing the scGPT model from the given notebook, I faced quite a few issues, especially in terms of environment setup and actually getting the model to work properly. I didn’t build the model from scratch, but even running it had it’s own set of challenges 😅. Here’s everything I faced:
+While running and testing the scGPT model from the given notebook, I faced quite a few issues, especially in terms of environment setup and actually getting the model to work properly. I didn’t build the model from scratch, but even running it had it’s own set of challenges . Here’s everything I faced:
 
 ---
 
@@ -41,7 +41,7 @@ While running and testing the scGPT model from the given notebook, I faced quite
 
 - Getting the whole thing to run required very specific setup. A small mismatch in version could break it all.
 - I realised that I should’ve used a virtual env or Docker early on — that would’ve saved me so much time.
-- Honestly, it made me realize how important clean documentation and proper requirements files are 😅
+- Honestly, it made me realize how important clean documentation and proper requirements files are needed.
 
 ---
 
